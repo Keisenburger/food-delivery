@@ -18,7 +18,7 @@ server.use("/food-category", foodcategoryRouter);
 server.use("/auth", authRouter);
 server.use("/food-order", foodOrderRouter);
 
-server.get("/", (req, res) => {
+server.get("/", (_req, res) => {
   res.send("Hello");
 });
 

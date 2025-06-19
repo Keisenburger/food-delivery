@@ -1,7 +1,8 @@
 import express from "express";
 
 import {
-  orderFood,
+  createFoodOrder,
+  deleteFoodOrder,
   getAllFoodOrders,
   getFoodOrderById,
   updateFoodOrder,
@@ -9,9 +10,10 @@ import {
 
 const foodOrderRouter = express.Router();
 
-foodOrderRouter.post("/", orderFood);
+foodOrderRouter.post("/", createFoodOrder);
 foodOrderRouter.get("/", getAllFoodOrders);
 foodOrderRouter.get("/:foodOrderId", getFoodOrderById);
 foodOrderRouter.patch("/:foodOrderId", updateFoodOrder);
+foodOrderRouter.delete("/:foodOrderId", deleteFoodOrder);
 
 export default foodOrderRouter;

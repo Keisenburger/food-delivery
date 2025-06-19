@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Food } from "../models/index.js";
-import { error } from "console";
+
 export const getAllFoods = async (req: Request, res: Response) => {
   try {
     const foods = await Food.find();
@@ -17,11 +17,10 @@ export const getAllFoods = async (req: Request, res: Response) => {
 export const getFoodById = async (req: Request, res: Response) => {
   try {
     const id = req.params.foodId;
-    const foods = await Food.find();
-    const selectedFood = foods && foods.find((food) => food.id == id);
+    const food = await Food.findById(id);
     res.json({
       success: true,
-      data: selectedFood,
+      data: food,
     });
   } catch (error) {
     console.error("Error fetching food", error);
@@ -50,8 +49,29 @@ export const createFood = async (req: Request, res: Response) => {
   }
 };
 
-export const updateFood = (req: Request, res: Response) => {
-  res.send("food/foodId PATCH request irle");
+export const updateFood = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.foodId;
+    const { foodName, price, image, ingredients } = req.body;
+    const updatedFood = await Food.findByIdAndUpdate(id, {
+      foodName: foodName,
+      price: price,
+      image: image,
+      ingredients: ingredients,
+      updatedAt: new Date(),
+    });
+    if (!updatedFood) {
+      console.error("Error finding food");
+      res.status(404).json({ success: false, error: "Failed to find food" });
+    }
+    res.json({
+      success: true,
+      updatedData: updatedFood,
+    });
+  } catch (error) {
+    console.error("Error updating food:", error);
+    res.status(400).json({ success: false, error: "Failed to update food" });
+  }
 };
 
 export const deleteFood = async (req: Request, res: Response) => {
