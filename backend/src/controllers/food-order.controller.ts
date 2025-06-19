@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { FoodOrder } from "../models/index.js";
 export const createFoodOrder = async (req: Request, res: Response) => {
   try {
-    const { foodOrderItem, totalPrice, status } = req.body;
+    const { foodOrderItems, totalPrice, status } = req.body;
     const newFoodOrder = await FoodOrder.create({
       totalPrice: totalPrice,
-      foodOrderItem: foodOrderItem,
+      foodOrderItems: foodOrderItems,
       status: status,
       createdAt: new Date(),
     });
@@ -58,13 +58,17 @@ export const getFoodOrderById = async (req: Request, res: Response) => {
 export const updateFoodOrder = async (req: Request, res: Response) => {
   try {
     const id = req.params.foodOrderId;
-    const { foodOrderItem, totalPrice, status } = req.body;
-    const updatedOrder = await FoodOrder.findByIdAndUpdate(id, {
-      foodOrderItem: foodOrderItem,
-      totalPrice: totalPrice,
-      status: status,
-      updatedAt: new Date(),
-    });
+    const { foodOrderItems, totalPrice, status } = req.body;
+    const updatedOrder = await FoodOrder.findByIdAndUpdate(
+      id,
+      {
+        foodOrderItems: foodOrderItems,
+        totalPrice: totalPrice,
+        status: status,
+        updatedAt: new Date(),
+      },
+      { new: true }
+    );
     if (!updatedOrder) {
       console.error("Error finding Order");
       res
@@ -73,6 +77,7 @@ export const updateFoodOrder = async (req: Request, res: Response) => {
     }
     res.json({
       success: true,
+      data: updatedOrder,
     });
   } catch (error) {
     console.error("Error updating food order:", error);
@@ -97,6 +102,7 @@ export const deleteFoodOrder = async (req: Request, res: Response) => {
     }
     res.json({
       success: true,
+      data: deletedOrder,
     });
   } catch (error) {
     console.error("Error deleting Order:", error);

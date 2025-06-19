@@ -7,9 +7,9 @@ const authSchema = new Schema({
   phoneNumber: String,
   address: String,
   role: String,
-  isVerifies: Boolean,
+  isVerified: Boolean,
   createdAt: Date,
   updatedAt: Date,
 });
 
-export const Auth = model("Auth", authSchema);
+export const User = model("Users", authSchema);

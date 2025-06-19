@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 const foodOrderSchema = new Schema({
   //   user: ObjectId,
   totalPrice: Number,
-  foodOrderItem: String,
+  foodOrderItems: [String],
   status: String,
   createdAt: Date,
   updatedAt: Date,

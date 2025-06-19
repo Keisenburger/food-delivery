@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { Food } from "../models/index.js";
+import { Food, FoodCategory } from "../models/index.js";
 
 export const getAllFoods = async (req: Request, res: Response) => {
   try {
-    const foods = await Food.find();
+    const foods = await Food.find().populate("category");
+
     res.json({
       success: true,
       data: foods,
@@ -29,12 +30,14 @@ export const getFoodById = async (req: Request, res: Response) => {
 };
 
 export const createFood = async (req: Request, res: Response) => {
-  const { foodName, price, image, ingredients } = req.body;
+  const { foodName, price, image, ingredients, categoryId } = req.body;
+
   try {
     const createdFood = await Food.create({
       foodName: foodName,
       price: price,
       image: image,
+      category: categoryId,
       ingredients: ingredients,
       createdAt: new Date(),
     });
@@ -53,13 +56,17 @@ export const updateFood = async (req: Request, res: Response) => {
   try {
     const id = req.params.foodId;
     const { foodName, price, image, ingredients } = req.body;
-    const updatedFood = await Food.findByIdAndUpdate(id, {
-      foodName: foodName,
-      price: price,
-      image: image,
-      ingredients: ingredients,
-      updatedAt: new Date(),
-    });
+    const updatedFood = await Food.findByIdAndUpdate(
+      id,
+      {
+        foodName: foodName,
+        price: price,
+        image: image,
+        ingredients: ingredients,
+        updatedAt: new Date(),
+      },
+      { new: true }
+    );
     if (!updatedFood) {
       console.error("Error finding food");
       res.status(404).json({ success: false, error: "Failed to find food" });

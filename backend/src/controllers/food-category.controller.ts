@@ -18,10 +18,14 @@ export const updateFoodCategory = async (req: Request, res: Response) => {
   try {
     const { categoryName } = req.body;
     const id = req.params.foodCategoryId;
-    const updatedCategory = await FoodCategory.findByIdAndUpdate(id, {
-      categoryName: categoryName,
-      updatedAt: new Date(),
-    });
+    const updatedCategory = await FoodCategory.findByIdAndUpdate(
+      id,
+      {
+        categoryName: categoryName,
+        updatedAt: new Date(),
+      },
+      { new: true }
+    );
     if (!updatedCategory) {
       console.error("Error fetching category");
       res
@@ -30,7 +34,7 @@ export const updateFoodCategory = async (req: Request, res: Response) => {
     }
     res.json({
       success: true,
-      updatedCategory: updatedCategory,
+      data: updatedCategory,
     });
   } catch (error) {
     console.error("Error updating category");
