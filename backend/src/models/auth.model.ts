@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { userRole } from "./enums.js";
 const { Schema, model } = mongoose;
 
 const authSchema = new Schema({
@@ -8,9 +7,9 @@ const authSchema = new Schema({
   phoneNumber: String,
   address: String,
   role: {
-    type: String as () => userRole,
-    enum: Object.values(userRole),
-    default: userRole.User,
+    type: String,
+    enum: ["User", "Admin"],
+    default: "User",
   },
   isVerified: Boolean,
   createdAt: Date,

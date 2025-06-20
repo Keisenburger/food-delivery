@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { OrderStatus } from "./enums.js";
 const { Schema, model } = mongoose;
 const foodOrderSchema = new Schema({
   user: {
@@ -14,9 +13,9 @@ const foodOrderSchema = new Schema({
     },
   ],
   status: {
-    type: String as () => OrderStatus,
-    enum: Object.values(OrderStatus),
-    default: OrderStatus.Pending,
+    type: String,
+    enum: ["PENDING", "CANCELLED", "DELIVERED"],
+    default: "PENDING",
   },
   createdAt: Date,
   updatedAt: Date,
