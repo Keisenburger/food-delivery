@@ -5,10 +5,12 @@ const foodSchema = new Schema({
   price: Number,
   image: String,
   ingredients: String,
-  category: {
-    type: Schema.Types.ObjectId,
-    ref: "FoodCategory",
-  },
+  category: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "FoodCategory",
+    },
+  ],
   createdAt: Date,
   updatedAt: Date,
 });

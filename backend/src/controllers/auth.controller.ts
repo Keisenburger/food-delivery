@@ -8,16 +8,14 @@ export const signIn = (req: Request, res: Response) => {
   res.send("auth/sign-in POST huselt irle");
 };
 
-export const signUp = (req: Request, res: Response) => {
+export const signUp = async (req: Request, res: Response) => {
   try {
-    const { email, phoneNumber, address, password, role, isVerified } =
-      req.body;
-    const user = User.create({
+    const { email, phoneNumber, address, password, isVerified } = req.body;
+    const user = await User.create({
       email: email,
       password: password,
       phoneNumber: phoneNumber,
       address: address,
-      role: role,
       isVerified: isVerified,
       createdAt: new Date(),
     });

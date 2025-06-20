@@ -5,13 +5,11 @@ import {
   updateFoodCategory,
   createFoodCategory,
   deleteFoodCategory,
-} from "../controllers/food-category.controller.js";
+} from "../controllers/food-category-controllers/index.js";
 
-const foodCategoryRouter = express.Router();
+export const foodCategoryRouter = express.Router();
 
 foodCategoryRouter.get("/", getAllFoodCategories);
 foodCategoryRouter.post("/", createFoodCategory);
 foodCategoryRouter.patch("/:foodCategoryId", updateFoodCategory);
 foodCategoryRouter.delete("/:foodCategoryId", deleteFoodCategory);
-
-export default foodCategoryRouter;

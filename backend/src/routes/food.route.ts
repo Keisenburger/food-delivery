@@ -5,14 +5,12 @@ import {
   createFood,
   updateFood,
   deleteFood,
-} from "../controllers/food.controller.js";
+} from "../controllers/food-controllers/index.js";
 
-const foodsRouter = express.Router();
+export const foodsRouter = express.Router();
 
 foodsRouter.get("/", getAllFoods);
 foodsRouter.get("/:foodId", getFoodById);
 foodsRouter.post("/", createFood);
 foodsRouter.patch("/:foodId", updateFood);
 foodsRouter.delete("/:foodId", deleteFood);
-
-export default foodsRouter;
