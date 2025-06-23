@@ -10,7 +10,8 @@ export const signIn = (req: Request, res: Response) => {
 
 export const signUp = async (req: Request, res: Response) => {
   try {
-    const { email, phoneNumber, address, password, isVerified } = req.body;
+    const { email, phoneNumber, address, password, isVerified, role } =
+      req.body;
     const user = await User.create({
       email: email,
       password: password,
@@ -18,6 +19,7 @@ export const signUp = async (req: Request, res: Response) => {
       address: address,
       isVerified: isVerified,
       createdAt: new Date(),
+      role: role,
     });
 
     res.json({

@@ -1,5 +1,5 @@
 import express from "express";
-
+import cors from "cors";
 import mongoose from "mongoose";
 import {
   foodsRouter,
@@ -15,7 +15,9 @@ mongoose.connect(
 const server = express();
 const port = 4000;
 
+server.use(cors());
 server.use(express.json());
+
 server.use("/food", foodsRouter);
 server.use("/food-category", foodCategoryRouter);
 server.use("/auth", authRouter);

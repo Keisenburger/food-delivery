@@ -1,21 +1,21 @@
 import mongoose from "mongoose";
-const { Schema, model } = mongoose;
+const { Schema, model, Types } = mongoose;
 const foodOrderSchema = new Schema({
   user: {
-    type: Schema.Types.ObjectId,
+    type: Types.ObjectId,
     ref: "Users",
   },
   totalPrice: Number,
   foodOrderItems: [
     {
-      type: Schema.Types.ObjectId,
+      type: Types.ObjectId,
       ref: "Food",
     },
   ],
   status: {
     type: String,
-    enum: ["PENDING", "CANCELLED", "DELIVERED"],
-    default: "PENDING",
+    enum: ["Pending", "Cancelled", "Delivered"],
+    default: "Pending",
   },
   createdAt: Date,
   updatedAt: Date,

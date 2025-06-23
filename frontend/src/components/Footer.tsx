@@ -1,15 +1,23 @@
-const Footer = () => {
-  const menuItems = [
-    "Pizza",
-    "Burger",
-    "Sushi",
-    "Pasta",
-    "Drinks",
-    "Noodles",
-    "Steak",
-    "Soup",
-  ];
+"use client";
 
+import { Food } from "@/types";
+import { useEffect, useState } from "react";
+
+const Footer = () => {
+  const [foods, setFoods] = useState<Food[]>([]);
+
+  const fetchFoods = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/food");
+      const responseData = await response.json();
+      setFoods(responseData.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchFoods();
+  }, []);
   return (
     <div className="bg-[#18181B] w-full pt-15 pb-20 overflow-hidden flex flex-col items-center gap-20">
       <div className="w-full bg-red-500 whitespace-nowrap">
@@ -43,9 +51,9 @@ const Footer = () => {
           <div className="flex flex-col gap-4">
             <p className="text-[#71717A]">MENU</p>
             <div className="grid grid-rows-5 auto-cols-max grid-flow-col gap-4">
-              {menuItems.map((item, index) => (
-                <p key={index} className="mr-10">
-                  {item}
+              {foods.map((food) => (
+                <p key={food._id} className="mr-10">
+                  {food.foodName}
                 </p>
               ))}
             </div>
