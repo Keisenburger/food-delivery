@@ -6,7 +6,7 @@ import {
   signIn,
   signUp,
   verifyResetPassword,
-} from "../controllers/auth.controller.js";
+} from "../controllers/user.controller.js";
 
 export const authRouter = express.Router();
 
