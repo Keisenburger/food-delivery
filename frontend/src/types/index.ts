@@ -1,5 +1,5 @@
 export type Food = {
-  _id: any;
+  _id: String;
   foodName: String;
   price: String;
   image: String;
@@ -10,6 +10,5 @@ export type Food = {
 };
 
 export type Category = {
-  _id: any;
   categoryName: String;
 };

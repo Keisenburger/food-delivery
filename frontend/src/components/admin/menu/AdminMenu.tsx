@@ -1,10 +1,8 @@
-"use client";
-import Footer from "@/components/Home/Footer/Footer";
-import Navigation from "@/components/Home/Navigation/Navigation";
 import { Category, Food } from "@/types";
+import { Plus } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const Home = () => {
+export const AdminMenu = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [foods, setFoods] = useState<Food[]>([]);
   const fetchCategories = async () => {
@@ -29,34 +27,33 @@ const Home = () => {
     fetchCategories();
     fetchFoods();
   }, []);
-  console.log(foods);
-
   return (
-    <div className="flex flex-col gap-22 bg-neutral-700 items-center">
-      <section>
-        <Navigation></Navigation>
-        <img src="/bg.png" alt="bg" className="w-screen" />
-      </section>
-
-      {categories.map((category) => {
+    <div>
+      {categories.map((category, index) => {
         return (
           <div
-            className="container flex flex-col gap-[54px]"
-            key={category._id}
+            className="p-6 bg-white rounded-xl flex flex-col gap-4"
+            key={index}
           >
-            <h2 className="font-semibold text-3xl text-[#FFFFFF]">
-              {category.categoryName}
-            </h2>
-            <div className="grid grid-cols-3 gap-9">
+            <p className="text-xl font-semibold text-[#09090B]">Salads (3)</p>
+            <div className="grid grid-cols-4 gap-6">
+              <div className="py-2 px-4 rounded-[20px] border flex items-center justify-center flex-col gap-6 border-red-500 border-dashed">
+                <div className="rounded-full bg-red-500 flex justify-center items-center size-[40px]">
+                  <Plus size={16} color="white" />
+                </div>
+                <p className="text-sm font-medium text-[#18181B]">
+                  Add new Dish to Salads
+                </p>
+              </div>
               {foods
                 .filter(
                   (food) => food.category.categoryName === category.categoryName
                 )
-                .map((food) => {
+                .map((food, index) => {
                   return (
                     <div
                       className="p-4 rounded-[20px] border flex flex-col gap-5 bg-white"
-                      key={food._id}
+                      key={index}
                     >
                       <img
                         src="/bg.png"
@@ -83,10 +80,8 @@ const Home = () => {
           </div>
         );
       })}
-
-      <Footer></Footer>
     </div>
   );
 };
 
-export default Home;
+export default AdminMenu;
