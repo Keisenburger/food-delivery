@@ -10,9 +10,7 @@ const Home = () => {
         <Navigation></Navigation>
         <img src="/bg.png" alt="bg" className="w-screen" />
       </section>
-
       <HomeMenu></HomeMenu>
-
       <Footer></Footer>
     </div>
   );
