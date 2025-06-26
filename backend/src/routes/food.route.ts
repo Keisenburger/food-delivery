@@ -6,7 +6,7 @@ import {
   updateFood,
   deleteFood,
 } from "../controllers/food-controllers/index.js";
-import verifyToken from "../middlewares/authMiddleware.js";
+// import verifyToken from "../middlewares/authMiddleware.js";
 
 export const foodsRouter = express.Router();
 

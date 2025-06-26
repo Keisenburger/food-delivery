@@ -2,7 +2,7 @@ import { Food } from "@/types";
 
 export const FoodCard = ({ food }: { food: Food }) => {
   return (
-    <div className="p-4 rounded-[20px] border flex flex-col gap-5 bg-white">
+    <div className="p-4 rounded-[20px] border border-[#E4E4E7] flex flex-col gap-5 bg-white">
       <img src="/bg.png" alt="" className="h-[210px] rounded-xl" />
       <div className="flex flex-col gap-2">
         <div className="flex justify-between items-center">
