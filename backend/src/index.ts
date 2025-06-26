@@ -11,12 +11,10 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-mongoose.connect(
-  "mongodb+srv://erdembileg0906:VUdkhPNDzxXy6NwJ@cluster0.s03re9s.mongodb.net"
-);
+mongoose.connect(process.env.MONGO_URI as any);
 
 const server = express();
-const port = 4000;
+const port = process.env.PORT;
 
 server.use(cors());
 server.use(express.json());

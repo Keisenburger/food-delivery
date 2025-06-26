@@ -4,6 +4,7 @@ import { Food } from "../../models/index.js";
 export const getAllFoods = async (_req: Request, res: Response) => {
   try {
     const foods = await Food.find().populate("category");
+    console.log(Food.find().populate("category"));
 
     res.json({
       success: true,
