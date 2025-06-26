@@ -35,7 +35,7 @@ const AdminCategory = () => {
                   {foods &&
                     foods.filter(
                       (food) =>
-                        food.category.categoryName === category.categoryName
+                        food?.category?.categoryName === category?.categoryName
                     ).length}
                 </div>
               </div>

@@ -1,23 +1,27 @@
 import FoodCard from "@/components/Home/menu/FoodCard";
-import { fetchFoods } from "@/functions/fetchData";
 import { Category, Food } from "@/types";
 import { Plus } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FoodModal from "./FoodModal";
 
-const SingleMenu = ({ category }: { category: Category }) => {
+const SingleMenu = ({
+  category,
+  foods,
+  onDataChange,
+}: {
+  category: Category;
+  foods: Food[];
+  onDataChange: () => void; // Add this prop
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [foods, setFoods] = useState<Food[]>([]);
-  useEffect(() => {
-    fetchFoods(setFoods);
-  }, []);
+
   return (
-    <div className="p-6  flex flex-col gap-4 ">
+    <div className="p-6 flex flex-col gap-4">
       <p className="text-xl font-semibold text-[#09090B]">
-        {category.categoryName} (
+        {category?.categoryName} (
         {foods &&
-          foods.filter(
-            (food) => food.category.categoryName === category.categoryName
+          foods?.filter(
+            (food) => food?.category?.categoryName === category?.categoryName
           ).length}
         )
       </p>
@@ -34,23 +38,24 @@ const SingleMenu = ({ category }: { category: Category }) => {
             <Plus size={16} color="white" />
           </div>
           <p className="text-sm font-medium text-[#18181B]">
-            Add new Dish to {category.categoryName}
+            Add new Dish to {category?.categoryName}
           </p>
         </div>
         {foods &&
           foods
-            .filter(
-              (food) => food.category.categoryName === category.categoryName
+            ?.filter(
+              (food) => food?.category?.categoryName === category?.categoryName
             )
             .map((food, index) => {
-              return <FoodCard food={food} key={index}></FoodCard>;
+              return <FoodCard food={food} key={index} />;
             })}
       </div>
       {isModalOpen && (
         <FoodModal
           setIsModalOpen={setIsModalOpen}
           category={category}
-        ></FoodModal>
+          onDataChange={onDataChange} // Pass it down to the modal
+        />
       )}
     </div>
   );

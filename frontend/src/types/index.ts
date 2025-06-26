@@ -9,7 +9,16 @@ export type Food = {
   };
 };
 
+export type NewFood = {
+  foodName: String;
+  price: String;
+  image: String;
+  ingredients: String;
+  categoryId: String;
+};
+
 export type Category = {
+  _id: String;
   categoryName: String;
 };
 
