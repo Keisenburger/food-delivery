@@ -2,8 +2,8 @@ import FoodCard from "@/components/Home/menu/HomeFoodCard";
 import { Category, Food } from "@/types";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import FoodModal from "../modals/FoodAddModal";
 import AdminFoodCard from "./AdminFoodCard";
+import FoodAddModal from "../modals/FoodAddModal";
 
 const SingleMenu = ({
   category,
@@ -48,14 +48,20 @@ const SingleMenu = ({
               (food) => food?.category?.categoryName === category?.categoryName
             )
             .map((food, index) => {
-              return <AdminFoodCard food={food} key={index} />;
+              return (
+                <AdminFoodCard
+                  food={food}
+                  key={index}
+                  categoryId={category._id}
+                />
+              );
             })}
       </div>
       {isModalOpen && (
-        <FoodModal
+        <FoodAddModal
           setIsModalOpen={setIsModalOpen}
           category={category}
-          onDataChange={onDataChange} // Pass it down to the modal
+          onDataChange={onDataChange}
         />
       )}
     </div>

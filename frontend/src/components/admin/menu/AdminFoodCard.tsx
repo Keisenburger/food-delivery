@@ -1,11 +1,20 @@
 import { Food } from "@/types";
 import { Pen } from "lucide-react";
+import { useState } from "react";
+import FoodEditModal from "../modals/FoodEditModal";
 
 export const AdminFoodCard = ({ food }: { food: Food }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="p-4 rounded-[20px] border border-[#E4E4E7] flex flex-col gap-5 bg-white">
       <div className="bg-[url(/bg.png)] w-full h-[210px] bg-center bg-cover rounded-xl p-5 flex justify-end items-end ">
-        <div className="bg-white rounded-full p-4 text-red-500 hover:bg-[#E4E4E7] cursor-pointer bg-no-repeat">
+        <div
+          className="bg-white rounded-full p-4 text-red-500 hover:bg-[#E4E4E7] cursor-pointer bg-no-repeat"
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+        >
           <Pen />
         </div>
       </div>
@@ -17,6 +26,13 @@ export const AdminFoodCard = ({ food }: { food: Food }) => {
         </div>
         <p className="text-sm text-[#09090B]">{food.ingredients}</p>
       </div>
+      {isModalOpen && (
+        <FoodEditModal
+          setIsModalOpen={setIsModalOpen}
+          food={food}
+          // onDataChange={fetchAllData}
+        />
+      )}
     </div>
   );
 };

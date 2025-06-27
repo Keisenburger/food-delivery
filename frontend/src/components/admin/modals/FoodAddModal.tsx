@@ -3,17 +3,17 @@ import { Category } from "@/types";
 import { X } from "lucide-react";
 import { useState } from "react";
 
-interface FoodModalProps {
+interface FoodAddModalProps {
   setIsModalOpen: (open: boolean) => void;
   category: Category;
-  onDataChange: () => void; // Add this prop
+  onDataChange: () => void;
 }
 
 const FoodAddModal = ({
   setIsModalOpen,
   category,
   onDataChange,
-}: FoodModalProps) => {
+}: FoodAddModalProps) => {
   const [inputs, setInputs] = useState({
     foodName: "",
     price: "",
@@ -36,11 +36,10 @@ const FoodAddModal = ({
   const submit = async () => {
     try {
       await postFood(newFood);
-      onDataChange(); // Refresh the data after successful post
+      onDataChange();
       handleClose();
     } catch (error) {
       console.error("Error posting food:", error);
-      // Handle error as needed
     }
   };
 
