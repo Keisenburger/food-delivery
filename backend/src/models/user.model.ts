@@ -8,8 +8,8 @@ const authSchema = new Schema({
   address: { type: String, required: true },
   role: {
     type: String,
-    enum: ["user", "admin"],
-    default: "user",
+    enum: ["USER", "ADMIN"],
+    default: "USER",
   },
   isVerified: Boolean,
   createdAt: Date,
