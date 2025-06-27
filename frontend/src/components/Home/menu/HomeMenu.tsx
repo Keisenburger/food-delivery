@@ -1,7 +1,7 @@
-import { fetchCategories, fetchFoods } from "@/functions/fetchData";
+import { fetchCategories, fetchFoods } from "@/functions/fetcherFunctions/GET";
 import { Category, Food } from "@/types";
 import { useEffect, useState } from "react";
-import FoodCard from "./FoodCard";
+import { HomeFoodCard } from "./HomeFoodCard";
 
 export const HomeMenu = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -28,7 +28,9 @@ export const HomeMenu = () => {
                       food.category.categoryName === category.categoryName
                   )
                   .map((food, index) => {
-                    return <FoodCard food={food} key={index}></FoodCard>;
+                    return (
+                      <HomeFoodCard food={food} key={index}></HomeFoodCard>
+                    );
                   })}
             </div>
           </div>

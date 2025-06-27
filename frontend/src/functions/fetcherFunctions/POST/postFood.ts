@@ -1,10 +1,8 @@
 import { NewFood } from "@/types";
-
-const baseUrl = "http://localhost:4000/";
+import { baseUrl } from "@/utils/baseUrl";
 
 export const postFood = async (food: NewFood) => {
   try {
-    console.log(food);
     const response = await fetch(`${baseUrl}food`, {
       method: "POST",
       headers: {

@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const authSchema = new Schema({
-  email: String,
-  password: String,
-  phoneNumber: String,
-  address: String,
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
+  address: { type: String, required: true },
   role: {
     type: String,
     enum: ["user", "admin"],

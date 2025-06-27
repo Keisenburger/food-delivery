@@ -1,4 +1,4 @@
-import { fetchCategories, fetchFoods } from "@/functions/fetchData";
+import { fetchCategories, fetchFoods } from "@/functions/fetcherFunctions/GET";
 import { Category, Food } from "@/types";
 import { useEffect, useState, useCallback } from "react";
 import SingleMenu from "./SingleMenu";

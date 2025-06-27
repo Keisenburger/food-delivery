@@ -1,4 +1,4 @@
-import { fetchOrders } from "@/functions/fetchData";
+import { fetchOrders } from "@/functions/fetcherFunctions/GET";
 import { Order } from "@/types";
 import { Calendar } from "lucide-react";
 import { useEffect, useState } from "react";

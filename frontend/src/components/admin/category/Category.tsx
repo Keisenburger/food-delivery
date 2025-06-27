@@ -1,16 +1,21 @@
 "use client";
-import { fetchCategories, fetchFoods } from "@/functions/fetchData";
+import { fetchCategories, fetchFoods } from "@/functions/fetcherFunctions/GET";
 import type { Category, Food } from "@/types";
+import { Plus } from "lucide-react";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import CategoryModal from "../modals/CategoryModal";
 
 const AdminCategory = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [foods, setFoods] = useState<Food[]>([]);
-
-  useEffect(() => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const fetchAllData = useCallback(() => {
     fetchCategories(setCategories);
     fetchFoods(setFoods);
+  }, []);
+  useEffect(() => {
+    fetchAllData();
   }, []);
 
   return (
@@ -40,8 +45,22 @@ const AdminCategory = () => {
                 </div>
               </div>
             ))}
+          <div
+            className="rounded-full bg-red-500 hover:bg-red-600 flex justify-center items-center size-[40px] transition cursor-pointer duration-200"
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
+          >
+            <Plus size={16} color="white" />
+          </div>
         </div>
       </div>
+      {isModalOpen && (
+        <CategoryModal
+          setIsModalOpen={setIsModalOpen}
+          onDataChange={fetchAllData}
+        />
+      )}
     </div>
   );
 };

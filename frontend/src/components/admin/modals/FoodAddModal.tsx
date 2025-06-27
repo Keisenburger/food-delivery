@@ -1,4 +1,4 @@
-import { postFood } from "@/functions/postData";
+import { postFood } from "@/functions/fetcherFunctions/POST/postData";
 import { Category } from "@/types";
 import { X } from "lucide-react";
 import { useState } from "react";
@@ -9,7 +9,7 @@ interface FoodModalProps {
   onDataChange: () => void; // Add this prop
 }
 
-const FoodModal = ({
+const FoodAddModal = ({
   setIsModalOpen,
   category,
   onDataChange,
@@ -117,4 +117,4 @@ const FoodModal = ({
   );
 };
 
-export default FoodModal;
+export default FoodAddModal;

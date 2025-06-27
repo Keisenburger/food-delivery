@@ -5,11 +5,15 @@ const foodOrderSchema = new Schema({
     type: Types.ObjectId,
     ref: "Users",
   },
-  totalPrice: Number,
+  totalPrice: {
+    type: Number,
+    required: true,
+  },
   foodOrderItems: [
     {
       type: Types.ObjectId,
       ref: "Food",
+      required: true,
     },
   ],
   status: {

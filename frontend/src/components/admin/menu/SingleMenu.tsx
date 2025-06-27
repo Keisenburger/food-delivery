@@ -1,8 +1,9 @@
-import FoodCard from "@/components/Home/menu/FoodCard";
+import FoodCard from "@/components/Home/menu/HomeFoodCard";
 import { Category, Food } from "@/types";
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import FoodModal from "./FoodModal";
+import FoodModal from "../modals/FoodAddModal";
+import AdminFoodCard from "./AdminFoodCard";
 
 const SingleMenu = ({
   category,
@@ -29,7 +30,7 @@ const SingleMenu = ({
       <div className="grid grid-cols-4 gap-6">
         <div
           className="py-2 px-4 rounded-[20px] border flex items-center justify-center flex-col gap-6 border-red-500 hover:bg-red-50
-         transition duration-200 cursor-pointer border-dashed"
+         transition duration-200 cursor-pointer border-dashed  min-h-[375px]"
           onClick={() => {
             setIsModalOpen(true);
           }}
@@ -47,7 +48,7 @@ const SingleMenu = ({
               (food) => food?.category?.categoryName === category?.categoryName
             )
             .map((food, index) => {
-              return <FoodCard food={food} key={index} />;
+              return <AdminFoodCard food={food} key={index} />;
             })}
       </div>
       {isModalOpen && (

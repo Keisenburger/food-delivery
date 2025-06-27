@@ -2,7 +2,10 @@ import mongoose from "mongoose";
 const { Schema, model } = mongoose;
 
 const foodCategorySchema = new Schema({
-  categoryName: String,
+  categoryName: {
+    type: String,
+    required: true,
+  },
   createdAt: Date,
   updatedAt: Date,
 });
