@@ -1,47 +1,48 @@
 export type Food = {
-  _id: String;
-  foodName: String;
-  price: String;
-  image: String;
-  ingredients: String;
+  _id: string;
+  foodName: string;
+  price: string;
+  image: string;
+  ingredients: string;
   category: {
-    categoryName: String;
+    categoryName: string;
+    categoryId: string;
   };
 };
 
 export type NewFood = {
-  foodName: String;
-  price: String;
-  image: String;
-  ingredients: String;
-  categoryId: String;
+  foodName: string;
+  price: string;
+  image: string;
+  ingredients: string;
+  categoryId: string;
 };
 
 export type Category = {
-  _id: String;
-  categoryName: String;
+  _id: string;
+  categoryName: string;
 };
 
 export type Order = {
-  _id: String;
-  createdAt: String;
-  totalPrice: String;
-  status: String;
+  _id: string;
+  createdAt: string;
+  totalPrice: string;
+  status: string;
   user: User;
   foodOrderItems: foodOrderItem[];
 };
 
 export type User = {
-  _id: String;
-  email: String;
-  address: String;
-  phoneNumber: Number;
-  password: String;
-  role: String;
+  _id: string;
+  email: string;
+  address: string;
+  phoneNumber: number;
+  password: string;
+  role: string;
 };
 
 export type foodOrderItem = {
-  _id: String;
+  _id: string;
   food: Food;
-  quantity: Number;
+  quantity: number;
 };

@@ -1,3 +1,6 @@
+"use client";
+import Link from "next/link";
+
 const Navigation = () => {
   return (
     <div className="flex w-full justify-center items-center py-3 bg-[#18181B]">
@@ -13,12 +16,22 @@ const Navigation = () => {
           </div>
         </div>
         <div className="flex gap-3 font-medium">
-          <button className="px-3 py-2 text-[#18181B] bg-[#F4F4F5] rounded-full ">
-            Sign up
-          </button>
-          <button className="px-3 py-2 rounded-full text-[#FAFAFA] bg-[#EF4444]">
-            Log in
-          </button>
+          <Link href="./auth/sign-up">
+            <button
+              className="px-4 py-2 text-[#18181B] bg-[#F4F4F5] rounded-full cursor-pointer 
+              transition duration-200 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F4F4F5]"
+            >
+              Sign up
+            </button>
+          </Link>
+          <Link href="./auth/sign-in">
+            <button
+              className="px-4 py-2 text-[#FAFAFA] bg-[#EF4444] rounded-full cursor-pointer 
+              transition duration-200 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#EF4444]"
+            >
+              Log in
+            </button>
+          </Link>
         </div>
       </div>
     </div>

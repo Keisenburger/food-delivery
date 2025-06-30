@@ -8,7 +8,7 @@ export const postFood = async (food: NewFood) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(food), // send directly
+      body: JSON.stringify(food),
     });
 
     if (!response.ok) {

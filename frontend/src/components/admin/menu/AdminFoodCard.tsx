@@ -3,7 +3,13 @@ import { Pen } from "lucide-react";
 import { useState } from "react";
 import FoodEditModal from "../modals/FoodEditModal";
 
-export const AdminFoodCard = ({ food }: { food: Food }) => {
+export const AdminFoodCard = ({
+  food,
+  fetchAllData,
+}: {
+  food: Food;
+  fetchAllData: () => void;
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -30,7 +36,7 @@ export const AdminFoodCard = ({ food }: { food: Food }) => {
         <FoodEditModal
           setIsModalOpen={setIsModalOpen}
           food={food}
-          // onDataChange={fetchAllData}
+          fetchAllData={fetchAllData}
         />
       )}
     </div>

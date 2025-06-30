@@ -26,7 +26,7 @@ export const AdminMenu = () => {
               category={category}
               key={index}
               foods={foods}
-              onDataChange={fetchAllData} // Pass the fetch function down
+              fetchAllData={fetchAllData} // Pass the fetch function down
             />
           );
         })}

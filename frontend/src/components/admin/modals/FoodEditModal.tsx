@@ -1,3 +1,4 @@
+import { deleteFood } from "@/functions/fetcherFunctions/DELETE";
 import { fetchCategories } from "@/functions/fetcherFunctions/GET";
 import { Category, Food } from "@/types";
 import { Trash, X } from "lucide-react";
@@ -6,11 +7,15 @@ import { useEffect, useState } from "react";
 interface FoodAddModalProps {
   setIsModalOpen: (open: boolean) => void;
   food: Food;
+  fetchAllData: () => void;
 }
 
-const FoodEditModal = ({ setIsModalOpen, food }: FoodAddModalProps) => {
+const FoodEditModal = ({
+  setIsModalOpen,
+  food,
+  fetchAllData,
+}: FoodAddModalProps) => {
   const [categories, setCategories] = useState<Category[]>([]);
-  console.log(food);
 
   useEffect(() => {
     fetchCategories(setCategories);
@@ -26,7 +31,15 @@ const FoodEditModal = ({ setIsModalOpen, food }: FoodAddModalProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
   };
-
+  const delFood = async () => {
+    try {
+      await deleteFood(food._id);
+      fetchAllData();
+      setIsModalOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="w-full h-full fixed flex justify-center items-center left-0 top-0 z-30 bg-black/50 cursor-default text-[#09090B]">
       <div className="bg-white rounded-xl p-6 flex flex-col gap-6 min-w-lg">
@@ -94,7 +107,7 @@ const FoodEditModal = ({ setIsModalOpen, food }: FoodAddModalProps) => {
         <div className="mt-6 flex justify-between items-center">
           <button
             className=" text-red-500 px-3 py-2 rounded-md cursor-pointer border hover:bg-red-50"
-            // onClick={submit}
+            onClick={delFood}
           >
             <Trash strokeWidth={1} />
           </button>

@@ -1,4 +1,3 @@
-import FoodCard from "@/components/Home/menu/HomeFoodCard";
 import { Category, Food } from "@/types";
 import { Plus } from "lucide-react";
 import { useState } from "react";
@@ -8,11 +7,11 @@ import FoodAddModal from "../modals/FoodAddModal";
 const SingleMenu = ({
   category,
   foods,
-  onDataChange,
+  fetchAllData,
 }: {
   category: Category;
   foods: Food[];
-  onDataChange: () => void; // Add this prop
+  fetchAllData: () => void; // Add this prop
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -53,6 +52,7 @@ const SingleMenu = ({
                   food={food}
                   key={index}
                   categoryId={category._id}
+                  fetchAllData={fetchAllData}
                 />
               );
             })}
@@ -61,7 +61,7 @@ const SingleMenu = ({
         <FoodAddModal
           setIsModalOpen={setIsModalOpen}
           category={category}
-          onDataChange={onDataChange}
+          fetchAllData={fetchAllData}
         />
       )}
     </div>

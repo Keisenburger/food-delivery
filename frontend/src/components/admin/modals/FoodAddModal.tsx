@@ -6,13 +6,13 @@ import { useState } from "react";
 interface FoodAddModalProps {
   setIsModalOpen: (open: boolean) => void;
   category: Category;
-  onDataChange: () => void;
+  fetchAllData: () => void;
 }
 
 const FoodAddModal = ({
   setIsModalOpen,
   category,
-  onDataChange,
+  fetchAllData,
 }: FoodAddModalProps) => {
   const [inputs, setInputs] = useState({
     foodName: "",
@@ -36,7 +36,7 @@ const FoodAddModal = ({
   const submit = async () => {
     try {
       await postFood(newFood);
-      onDataChange();
+      fetchAllData();
       handleClose();
     } catch (error) {
       console.error("Error posting food:", error);
