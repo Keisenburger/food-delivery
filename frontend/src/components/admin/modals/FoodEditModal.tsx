@@ -1,5 +1,6 @@
 import { deleteFood } from "@/functions/fetcherFunctions/DELETE";
 import { fetchCategories } from "@/functions/fetcherFunctions/GET";
+import { patchFood } from "@/functions/fetcherFunctions/PATCH";
 import { Category, Food } from "@/types";
 import { Trash, X } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -36,6 +37,15 @@ const FoodEditModal = ({
       await deleteFood(food._id);
       fetchAllData();
       setIsModalOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const submit = async () => {
+    try {
+      await patchFood(food._id, inputs);
+      setIsModalOpen(false);
+      fetchAllData();
     } catch (error) {
       console.log(error);
     }
@@ -113,7 +123,7 @@ const FoodEditModal = ({
           </button>
           <button
             className="bg-[#18181B] text-white px-3 py-2 rounded-md cursor-pointer"
-            // onClick={submit}
+            onClick={submit}
           >
             Save Changes
           </button>

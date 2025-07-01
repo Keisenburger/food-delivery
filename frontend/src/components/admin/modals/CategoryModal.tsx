@@ -4,12 +4,12 @@ import { useState } from "react";
 
 interface CategoryModalProps {
   setIsModalOpen: (open: boolean) => void;
-  onDataChange: () => void; // Add this prop
+  fetchAllData: () => void; // Add this prop
 }
 
 const CategoryModal = ({
   setIsModalOpen,
-  onDataChange,
+  fetchAllData,
 }: CategoryModalProps) => {
   const handleClose = () => {
     setIsModalOpen(false);
@@ -18,7 +18,7 @@ const CategoryModal = ({
   const submit = async () => {
     try {
       await postCategory(categoryName);
-      onDataChange(); // Refresh the data after successful post
+      fetchAllData(); // Refresh the data after successful post
       handleClose();
     } catch (error) {
       console.error("Error posting category:", error);

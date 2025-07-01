@@ -1,22 +1,15 @@
-import { fetchCategories, fetchFoods } from "@/functions/fetcherFunctions/GET";
 import { Category, Food } from "@/types";
-import { useEffect, useState, useCallback } from "react";
 import SingleMenu from "./SingleMenu";
-
-export const AdminMenu = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [foods, setFoods] = useState<Food[]>([]);
-
-  // Create a function to fetch all data
-  const fetchAllData = useCallback(() => {
-    fetchCategories(setCategories);
-    fetchFoods(setFoods);
-  }, []);
-
-  useEffect(() => {
-    fetchAllData();
-  }, []); // Remove foods and categories from dependency array
-
+interface CategoryProps {
+  categories: Category[];
+  foods: Food[];
+  fetchAllData: () => void; // Add this prop
+}
+export const AdminMenu = ({
+  categories,
+  foods,
+  fetchAllData,
+}: CategoryProps) => {
   return (
     <div className="rounded-xl bg-white">
       {categories &&
