@@ -7,7 +7,7 @@ const PasswordSection = ({ setPage }: { setPage: (str: string) => void }) => {
     setPage("gmail");
   };
   return (
-    <div className="w-[400px] p-4 flex flex-col gap-6">
+    <div className=" p-4 flex flex-col gap-6">
       <div>
         <button
           className=" p-2 border border-[#E4E4E7] rounded-md hover:bg-[#E4E4E7] cursor-pointer"
